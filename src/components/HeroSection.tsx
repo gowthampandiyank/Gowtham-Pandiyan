@@ -29,15 +29,15 @@ export const HeroSection: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-14 items-center my-auto">
         <div className="md:col-span-7 flex flex-col justify-center">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 w-fit mb-4 text-[11px] font-mono tracking-widest text-[#111111] dark:text-[#EBEBE8] uppercase bg-white dark:bg-[#141412] border border-[#E2E2DE] dark:border-white/10">
-            <span className="w-2 h-2 bg-[#16A34A] inline-block shrink-0" />
+            <span className="w-2 h-2 bg-[#E54835] inline-block shrink-0" />
             <span className="truncate">
               {settings.status_badge || 'Actively Modeling & Delivering Projects | Open to Data Analyst Roles'}
             </span>
           </div>
 
           <div className="mb-2">
-            <h2 className="text-xs sm:text-sm font-mono tracking-widest text-[#16A34A] uppercase font-bold flex items-center gap-2">
-              <span className="p-1 bg-[#16A34A]/10 text-[#16A34A] border border-[#16A34A]/25">
+            <h2 className="text-xs sm:text-sm font-mono tracking-widest text-[#E54835] uppercase font-bold flex items-center gap-2">
+              <span className="p-1 bg-[#E54835]/10 text-[#E54835] border border-[#E54835]/25">
                 <Database className="w-3.5 h-3.5" />
               </span>
               <span>DATA ANALYST &amp; BUSINESS INTELLIGENCE</span>
@@ -57,7 +57,7 @@ export const HeroSection: React.FC = () => {
           <p className="text-sm sm:text-base text-[#6B6B67] dark:text-[#9E9E9A] max-w-xl font-normal leading-relaxed mb-8 tracking-normal">
             Specializing in relational SQL data warehousing, business intelligence modeling, and executive Power BI dashboards.{' '}
             <span className="font-semibold text-[#111111] dark:text-neutral-300">
-              SQL Pipelines / Star Schemas / Power BI / <span className="text-[#16A34A]">Statistical Modeling</span>.
+              SQL Pipelines / Star Schemas / Power BI / <span className="text-[#E54835]">Statistical Modeling</span>.
             </span>
           </p>
 
@@ -72,14 +72,14 @@ export const HeroSection: React.FC = () => {
 
             <button
               onClick={() => scrollTo('contact')}
-              className="px-5 py-3.5 border border-[#D9D9D5] dark:border-[#444440] text-[#111111] dark:text-[#EBEBE8] text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:border-[#16A34A] hover:text-[#16A34A] transition-colors duration-200"
+              className="px-5 py-3.5 border border-[#D9D9D5] dark:border-[#444440] text-[#111111] dark:text-[#EBEBE8] text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:border-[#E54835] hover:text-[#E54835] transition-colors duration-200"
             >
               <span>Get in Touch</span>
             </button>
 
             <button
               onClick={() => window.print()}
-              className="px-4 py-3.5 border border-[#D9D9D5] dark:border-[#444440] text-[#111111] dark:text-[#EBEBE8] text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:border-[#16A34A] hover:text-[#16A34A] transition-colors duration-200"
+              className="px-4 py-3.5 border border-[#D9D9D5] dark:border-[#444440] text-[#111111] dark:text-[#EBEBE8] text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:border-[#E54835] hover:text-[#E54835] transition-colors duration-200"
             >
               <FileText className="w-3.5 h-3.5" />
               <span>Resume</span>
@@ -89,7 +89,7 @@ export const HeroSection: React.FC = () => {
           <div className="mt-8 p-3.5 bg-white dark:bg-black/20 border border-[#E2E2DE] dark:border-white/10 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono">
             {['SQL Data Modeling', 'Power BI Intelligence', 'Python & Pandas', 'Advanced DAX', 'ETL Pipelines'].map((item) => (
               <span key={item} className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-[#16A34A] shrink-0" />
+                <span className="w-1.5 h-1.5 bg-[#E54835] shrink-0" />
                 <span className="font-semibold text-[#111111] dark:text-[#EBEBE8]">{item}</span>
               </span>
             ))}
@@ -119,10 +119,10 @@ export const HeroSection: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-8 flex items-center justify-between text-xs text-[#6B6B67] dark:text-[#9E9E9A]">
         <button
           onClick={() => scrollTo('about')}
-          className="flex items-center gap-2 hover:text-[#16A34A] transition-colors focus:outline-none"
+          className="flex items-center gap-2 hover:text-[#E54835] transition-colors focus:outline-none"
         >
           <span className="font-mono uppercase tracking-widest text-[10px]">Scroll to explore</span>
-          <ArrowDown className="w-3.5 h-3.5 text-[#16A34A]" />
+          <ArrowDown className="w-3.5 h-3.5 text-[#E54835]" />
         </button>
 
         <div className="font-mono text-[10px] tabular-nums">LOC: 13.0827° N, 80.2707° E</div>
