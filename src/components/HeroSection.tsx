@@ -20,8 +20,8 @@ export const HeroSection: React.FC = () => {
       <div
         className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
         style={{
-          maskImage: "linear-gradient(90deg, black 0%, black 9%, transparent 23%, transparent 77%, black 91%, black 100%)",
-          WebkitMaskImage: "linear-gradient(90deg, black 0%, black 9%, transparent 23%, transparent 77%, black 91%, black 100%)",
+          maskImage: "linear-gradient(90deg, black 0%, black 3%, transparent 9%, transparent 91%, black 97%, black 100%)",
+          WebkitMaskImage: "linear-gradient(90deg, black 0%, black 3%, transparent 9%, transparent 91%, black 97%, black 100%)",
         }}
       >
         <DataBackgroundAnimation />
