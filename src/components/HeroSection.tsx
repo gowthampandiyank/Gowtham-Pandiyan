@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, FileText, Database } from 'lucide-react';
 import { usePortfolioStore } from '../store/usePortfolioStore';
 import { DataBackgroundAnimation } from './DataBackgroundAnimation';
+import { resolvePortfolioImage } from '../utils/imageUtils';
 
 export const HeroSection: React.FC = () => {
   const { settings, setCursor, resetCursor, isPageRevealed } = usePortfolioStore();
