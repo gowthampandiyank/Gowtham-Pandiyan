@@ -1,5 +1,4 @@
 
-
 const imageModules = import.meta.glob(
   '../assets/images/*.{png,jpg,jpeg,webp,avif,gif,svg}',
   {
@@ -9,10 +8,12 @@ const imageModules = import.meta.glob(
   }
 ) as Record<string, string>;
 
-export function resolvePortfolioImage(src?: string | null): string {
+export function resolvePortfolioImage(
+  src?: string | null
+): string {
   if (!src) return '';
 
-  // Preserve external and embedded image URLs
+  // Keep external and dynamic image URLs unchanged
   if (/^(https?:|data:|blob:)/i.test(src)) {
     return src;
   }
@@ -30,7 +31,7 @@ export function resolvePortfolioImage(src?: string | null): string {
     return imageModules[key] || '';
   }
 
-  // Resolve images stored inside the public directory
+  // Resolve public folder images using Vite's base URL
   const cleanPath = src.replace(/^\/+/, '');
 
   return `${import.meta.env.BASE_URL}${cleanPath}`;
