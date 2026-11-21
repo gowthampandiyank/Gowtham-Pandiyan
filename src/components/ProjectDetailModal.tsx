@@ -19,6 +19,7 @@ import {
 import { Project } from '../types';
 import { TrendArrow } from './TrendArrow';
 import { ExportDataButton } from './ExportDataButton';
+import { resolvePortfolioImage } from '../utils/imageUtils';
 import { generateProjectDummyCsv, downloadCsvFile } from '../lib/csvExport';
 
 interface ProjectDetailModalProps {
@@ -477,7 +478,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                   </div>
                   <div className="relative aspect-video rounded-lg overflow-hidden bg-black flex items-center justify-center">
                     <img
-                      src={project.image_url}
+                      src={resolvePortfolioImage(project.image_url)}
                       alt={project.title}
                       className="w-full h-full object-cover opacity-60"
                     />
@@ -503,7 +504,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project,
                         key={idx}
                         className="rounded-xl overflow-hidden border border-[#D9D9D5] dark:border-[#262624] aspect-[16/10] bg-[#E8E8E4] dark:bg-[#1A1A18] relative group"
                       >
-                        <img src={img} alt={`${project.title} capture ${idx + 1}`} className="w-full h-full object-cover" />
+                        <img src={resolvePortfolioImage(img)} alt={`${project.title} capture ${idx + 1}`} className="w-full h-full object-cover" />
                         <div className="absolute bottom-2 left-2 bg-black/75 text-white px-2 py-0.5 rounded text-[10px] font-mono">
                           Capture 0{idx + 1}
                         </div>
