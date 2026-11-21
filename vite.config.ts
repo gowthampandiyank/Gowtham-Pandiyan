@@ -1,24 +1,37 @@
+
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    // GitHub Pages serves this project from /Gowtham-Pandiyan/, not the domain root.
+    // GitHub Pages deployment path
     base: '/Gowtham-Pandiyan/',
-    plugins: [react(), tailwindcss()],
+
+    // Vite plugins
+    plugins: [
+      react(),
+      tailwindcss(),
+    ],
+
+    // Path aliases
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
       },
     },
+
+    // Development server configuration
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      // Disable HMR in Google AI Studio when required
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
-      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+
+      // Disable file watching when required
+      watch:
+        process.env.DISABLE_HMR === 'true'
+          ? null
+          : {},
     },
   };
 });
