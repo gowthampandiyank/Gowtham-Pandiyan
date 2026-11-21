@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, FileText, Database } from 'lucide-react';
@@ -76,7 +77,7 @@ export const HeroSection: React.FC = () => {
       filter: 'blur(0px)',
       transition: {
         duration: 0.85,
-        ease: [0.16, 1, 0.3, 1], // Smooth cinematic curve
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
@@ -123,17 +124,18 @@ export const HeroSection: React.FC = () => {
       id="home"
       className="relative min-h-[86vh] flex flex-col justify-between pt-28 pb-12 md:pt-32 md:pb-16 overflow-hidden tech-grid-bg border-b border-white/40 dark:border-white/10"
     >
-      {/* New DataBackgroundAnimation component strictly in the hero background (z-0) */}
+      {/* Data background animation */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <DataBackgroundAnimation />
       </div>
 
-      {/* Signature subtle aura across light & dark modes */}
+      {/* Signature subtle aura */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[380px] bg-[#E54835]/6 dark:bg-[#E54835]/8 blur-[160px] rounded-full pointer-events-none z-0" />
 
-      {/* Main Content Area: Left Text, Right Image: strictly in foreground (relative z-30) */}
+      {/* Main Content Area */}
       <div className="relative z-30 max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-14 items-center my-auto">
-        {/* Left Column: Massive Editorial Typography with Framer Motion Staggered Reveal */}
+
+        {/* Left Column */}
         <motion.div
           variants={containerVariants}
           initial={prefersReducedMotion ? 'visible' : 'hidden'}
@@ -161,7 +163,7 @@ export const HeroSection: React.FC = () => {
             </h2>
           </motion.div>
 
-          {/* Main Headline with Staggered Vertical Slide & Opacity Fade-in */}
+          {/* Main Headline */}
           <div className="overflow-hidden mb-5">
             <h1
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-[#111111] dark:text-[#EBEBE8] uppercase leading-[0.95]"
@@ -180,7 +182,7 @@ export const HeroSection: React.FC = () => {
             </h1>
           </div>
 
-          {/* Subheadline with Staggered Entrance */}
+          {/* Subheadline */}
           <motion.p
             variants={subheadlineVariants}
             className="text-sm sm:text-base text-[#6B6B67] dark:text-[#9E9E9A] max-w-xl font-normal leading-relaxed mb-8 tracking-normal"
@@ -191,9 +193,8 @@ export const HeroSection: React.FC = () => {
             </span>
           </motion.p>
 
-          {/* Action CTAs - Staggered Buttons */}
+          {/* Action Buttons */}
           <motion.div variants={ctaGroupVariants} className="flex flex-wrap items-center gap-3.5">
-            {/* Primary Action Button */}
             <button
               onClick={scrollToWork}
               onMouseEnter={() => setCursor({ label: 'WORK', type: 'explore' })}
@@ -204,7 +205,6 @@ export const HeroSection: React.FC = () => {
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </button>
 
-            {/* Secondary Action: Contact */}
             <button
               onClick={scrollToContact}
               onMouseEnter={() => setCursor({ label: 'CONTACT', type: 'contact' })}
@@ -214,7 +214,6 @@ export const HeroSection: React.FC = () => {
               <span>Get in Touch</span>
             </button>
 
-            {/* Tertiary Action: Resume */}
             <button
               onClick={() => window.print()}
               onMouseEnter={() => setCursor({ label: 'RESUME', type: 'open' })}
@@ -226,7 +225,7 @@ export const HeroSection: React.FC = () => {
             </button>
           </motion.div>
 
-          {/* Quick Technical Highlights - Unified standard palette */}
+          {/* Technical Highlights */}
           <motion.div
             variants={highlightsBarVariants}
             className="mt-8 p-3.5 bg-white/90 dark:bg-black/40 backdrop-blur-md border border-[#E2E2DE] dark:border-white/10 rounded-none shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono"
@@ -236,21 +235,25 @@ export const HeroSection: React.FC = () => {
               <span className="font-semibold text-[#111111] dark:text-[#EBEBE8]">SQL Data Modeling</span>
             </span>
             <span aria-hidden="true" className="text-[#D9D9D5] dark:text-[#333330]">·</span>
+
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-none bg-[#E54835] shrink-0" />
               <span className="font-semibold text-[#111111] dark:text-[#EBEBE8]">Power BI Intelligence</span>
             </span>
             <span aria-hidden="true" className="text-[#D9D9D5] dark:text-[#333330]">·</span>
+
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-none bg-[#E54835] shrink-0" />
               <span className="font-semibold text-[#111111] dark:text-[#EBEBE8]">Python &amp; Pandas</span>
             </span>
             <span aria-hidden="true" className="text-[#D9D9D5] dark:text-[#333330]">·</span>
+
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-none bg-[#E54835] shrink-0" />
               <span className="font-semibold text-[#111111] dark:text-[#EBEBE8]">Advanced DAX</span>
             </span>
             <span aria-hidden="true" className="text-[#D9D9D5] dark:text-[#333330]">·</span>
+
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-none bg-[#E54835] shrink-0" />
               <span className="font-semibold text-[#111111] dark:text-[#EBEBE8]">ETL Pipelines</span>
@@ -258,7 +261,7 @@ export const HeroSection: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Column: Hero Section Portrait with Complementary Fade & Scale */}
+        {/* Right Column: Portrait */}
         <motion.div
           initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.94, y: 24 }}
           animate={
@@ -274,19 +277,22 @@ export const HeroSection: React.FC = () => {
             onMouseLeave={resetCursor}
             className="relative group mx-auto md:ml-auto max-w-[290px] sm:max-w-[330px] md:max-w-[350px] lg:max-w-[390px] w-full overflow-hidden glass-panel-deep p-2.5 transition-all duration-500 rounded-none shadow-xl hover:border-[#E54835]/50"
           >
-            {/* The Portrait Image */}
+            {/* Updated Portrait Image Path */}
             <img
-              src="/src/assets/images/gowtham_portrait_1790451073382.jpg"
+              src={resolvePortfolioImage(
+                '/src/assets/images/gowtham_portrait_1790451073382.jpg'
+              )}
               alt="Gowtham Pandiyan - Data Analyst"
               className="w-full aspect-[3/4] object-cover object-top grayscale contrast-105 group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
               loading="eager"
             />
 
-            {/* Corner Technical Frame Markings - Frosted Glass */}
+            {/* Corner Technical Frame Markings */}
             <div className="absolute top-4 left-4 text-[9px] font-mono tracking-widest text-white/95 bg-black/60 backdrop-blur-md border border-white/20 px-2 py-0.5 pointer-events-none flex items-center gap-1.5 rounded-none shadow-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E54835] group-hover:animate-ping" />
               <span>GP // DATA ANALYTICS</span>
             </div>
+
             <div className="absolute bottom-4 right-4 text-[9px] font-mono tracking-widest text-white/95 bg-black/60 backdrop-blur-md border border-white/20 px-2 py-0.5 pointer-events-none rounded-none shadow-xs">
               CHENNAI / TN
             </div>
