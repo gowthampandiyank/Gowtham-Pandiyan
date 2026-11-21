@@ -1,0 +1,386 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-main: #FBFBFA;
+    --text-primary: #121212;
+    --text-secondary: #575752;
+    --border-color: #E2E2DE;
+    --card-bg: #FFFFFF;
+    --accent: #E54835;
+    color-scheme: light;
+  }
+
+  .dark {
+    --bg-main: #0D0D0D;
+    --text-primary: #EBEBE8;
+    --text-secondary: #9E9E9A;
+    --border-color: #262624;
+    --card-bg: #141412;
+    --accent: #E54835;
+    color-scheme: dark;
+  }
+
+  /* Strict Zero-Radius Discipline Across Entire Website */
+  *,
+  *::before,
+  *::after {
+    border-radius: 0px !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    letter-spacing: 0.015em;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.65;
+  }
+}
+
+/* Smooth, flicker-free background and color transitions when switching themes */
+html,
+body,
+header,
+footer,
+section,
+main,
+nav,
+article,
+aside,
+form,
+dialog,
+button,
+input,
+textarea,
+select,
+.tech-grid-bg {
+  transition-property: background-color, border-color, color, text-decoration-color, fill, stroke;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ensure common card, boundary, and text elements also transition colors and borders smoothly */
+div[class*="bg-"],
+div[class*="border-"],
+span[class*="text-"],
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  transition-property: background-color, border-color, color, text-decoration-color, fill, stroke;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Strictly isolate the custom cursor, toggle knob, and animated layout springs from CSS color/transform delays */
+.pointer-events-none,
+[data-framer-name],
+.no-theme-transition,
+.theme-toggle-knob {
+  transition-property: none !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9D9D5;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #333330;
+}
+
+/* Subtle Technical Grid Lines */
+.tech-grid-bg {
+  background-size: 56px 56px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+.dark .tech-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Dedicated Admin Console Technical Dark Grid (Always dark, authentic older admin theme) */
+.admin-grid-bg {
+  background-color: #0D0D0D;
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* Noise overlay */
+.bg-noise {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+}
+
+/* Smooth Image Transitions */
+.project-card-image {
+  filter: grayscale(100%);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .project-card-image,
+.project-card-image:hover {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
+
+/* Tabular numerals for specs, dates, and order */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Accessible monochromatic focus ring */
+*:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Skeleton Loading Shimmer Keyframes */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}
+
+.dark .skeleton-shimmer::after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* Unified Button Styling Classes */
+.btn-solid-mono {
+  background-color: #111111;
+  color: #FFFFFF;
+  border-radius: 0px !important;
+  font-weight: 700;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.dark .btn-solid-mono {
+  background-color: #FFFFFF;
+  color: #111111;
+}
+.btn-solid-mono:hover {
+  background-color: #262626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.dark .btn-solid-mono:hover {
+  background-color: #E5E5E5;
+}
+.btn-solid-mono:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-outline-mono {
+  background-color: transparent;
+  color: #111111;
+  border: 1px solid #111111;
+  border-radius: 0px !important;
+  font-weight: 700;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dark .btn-outline-mono {
+  color: #EBEBE8;
+  border-color: #EBEBE8;
+}
+.btn-outline-mono:hover {
+  background-color: #111111;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+.dark .btn-outline-mono:hover {
+  background-color: #EBEBE8;
+  color: #111111;
+}
+.btn-outline-mono:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Glassmorphism System */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
+}
+.dark .glass-panel {
+  background-color: rgba(18, 18, 22, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px -5px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-panel-deep {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 16px 45px -5px rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+}
+.dark .glass-panel-deep {
+  background-color: rgba(14, 14, 18, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px -5px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px) saturate(175%);
+  -webkit-backdrop-filter: blur(16px) saturate(175%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 24px -2px rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dark .glass-card {
+  background-color: rgba(22, 22, 26, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-card:hover {
+  background-color: rgba(255, 255, 255, 0.75);
+  border-color: rgba(229, 72, 53, 0.5);
+  box-shadow: 0 16px 40px -4px rgba(229, 72, 53, 0.12), 0 0 20px rgba(229, 72, 53, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+}
+.dark .glass-card:hover {
+  background-color: rgba(28, 28, 34, 0.7);
+  border-color: rgba(229, 72, 53, 0.55);
+  box-shadow: 0 18px 45px -4px rgba(0, 0, 0, 0.7), 0 0 25px rgba(229, 72, 53, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-input {
+  background-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(217, 217, 213, 0.8);
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+}
+.dark .glass-input {
+  background-color: rgba(26, 26, 32, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+.glass-pill {
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.dark .glass-pill {
+  background-color: rgba(25, 25, 30, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-nav {
+  background-color: rgba(249, 249, 247, 0.65);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.03);
+}
+.dark .glass-nav {
+  background-color: rgba(10, 10, 14, 0.65);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.glass-btn {
+  background-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-btn:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(229, 72, 53, 0.5);
+  box-shadow: 0 8px 25px rgba(229, 72, 53, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+.dark .glass-btn {
+  background-color: rgba(25, 25, 32, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.dark .glass-btn:hover {
+  background-color: rgba(35, 35, 45, 0.85);
+  border-color: rgba(229, 72, 53, 0.6);
+  box-shadow: 0 8px 25px rgba(229, 72, 53, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
