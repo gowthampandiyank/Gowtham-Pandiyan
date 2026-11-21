@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowDown, ArrowUpRight, FileText, Database } from 'lucide-react';
 import { usePortfolioStore } from '../store/usePortfolioStore';
 import { resolvePortfolioImage } from '../utils/imageUtils';
+import { DataBackgroundAnimation } from './DataBackgroundAnimation';
 
 export const HeroSection: React.FC = () => {
   const { settings } = usePortfolioStore();
@@ -13,8 +14,18 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[86vh] flex flex-col justify-between pt-28 pb-12 md:pt-32 md:pb-16 overflow-hidden bg-white dark:bg-[#0D0D0D] border-b border-[#E2E2DE] dark:border-white/10"
+      className="relative min-h-[86vh] flex flex-col justify-between pt-28 pb-12 md:pt-32 md:pb-16 overflow-hidden bg-white dark:bg-[#0D0D0D] tech-grid-bg border-b border-[#E2E2DE] dark:border-white/10"
     >
+      {/* Original data animation, masked to the empty outer margins only. */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none overflow-hidden"
+        style={{
+          maskImage: "linear-gradient(90deg, black 0%, black 9%, transparent 23%, transparent 77%, black 91%, black 100%)",
+          WebkitMaskImage: "linear-gradient(90deg, black 0%, black 9%, transparent 23%, transparent 77%, black 91%, black 100%)",
+        }}
+      >
+        <DataBackgroundAnimation />
+      </div>
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-14 items-center my-auto">
         <div className="md:col-span-7 flex flex-col justify-center">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 w-fit mb-4 text-[11px] font-mono tracking-widest text-[#111111] dark:text-[#EBEBE8] uppercase bg-white dark:bg-[#141412] border border-[#E2E2DE] dark:border-white/10">
