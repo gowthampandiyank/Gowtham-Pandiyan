@@ -16,6 +16,7 @@ import { usePortfolioStore } from '../store/usePortfolioStore';
 import { Project } from '../types';
 import { ProjectDetailModal } from './ProjectDetailModal';
 import { ProjectsSkeleton } from './skeletons/ProjectsSkeleton';
+import { resolvePortfolioImage } from '../utils/imageUtils';
 
 interface WorkSectionProps {
   limit?: number;
@@ -104,7 +105,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({
                       className={`relative overflow-hidden bg-[#EAEAE6] dark:bg-[#1A1A18] border border-[#E2E2DE] dark:border-[#262624] aspect-[16/9] rounded-none cursor-pointer shadow-sm ${colorConfig.borderHover} transition-colors`}
                     >
                       <img
-                        src={project.image_url}
+                        src={resolvePortfolioImage(project.image_url)}
                         alt={project.title}
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover project-card-image transition-transform duration-700 group-hover:scale-105"
