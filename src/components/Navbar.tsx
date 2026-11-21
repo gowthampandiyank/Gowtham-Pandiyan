@@ -214,182 +214,45 @@ export const Navbar: React.FC = () => {
       </motion.header>
 
       {/* ========================================================================= */}
-      {/* 2. DESKTOP VIEW: EXPANDABLE & MINIMIZABLE LEFT-SIDE RAIL                  */}
-      {/* Left side vertically centered, icon first and second name                 */}
+      {/* 2. RESPONSIVE TOP NAVIGATION: horizontal links on desktop and mobile */}
       {/* ========================================================================= */}
       <nav
-        aria-label="Desktop side navigation"
-        className="fixed left-4 lg:left-8 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-start"
+        aria-label="Main navigation"
+        className="fixed top-[66px] md:top-[72px] left-0 right-0 z-40 bg-white/90 dark:bg-[#0D0D0D]/90 backdrop-blur-xl border-b border-[#E2E2DE]/70 dark:border-[#262624]/70"
       >
-        <motion.div
-          animate={{ width: isExpanded ? 184 : 54 }}
-          transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-          className="flex flex-col rounded-none bg-white/85 dark:bg-[#0D0D0D]/90 backdrop-blur-xl border border-[#E2E2DE] dark:border-[#262624] shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] overflow-visible"
-        >
-          {/* Minimize / Expand Toggle Header */}
-          <div className="flex items-center justify-between px-3 py-2.5 border-b border-[#E2E2DE]/70 dark:border-[#262624]/70 bg-black/5 dark:bg-white/5 overflow-hidden">
-            <AnimatePresence initial={false}>
-              {isExpanded && (
-                <motion.span
-                  initial={{ opacity: 0, width: 0 }}
-                  animate={{ opacity: 1, width: 'auto' }}
-                  exit={{ opacity: 0, width: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="text-[9px] font-mono font-bold tracking-widest uppercase text-[#737373] dark:text-[#8E8E8A] overflow-hidden whitespace-nowrap"
-                >
-                  MENU
-                </motion.span>
-              )}
-            </AnimatePresence>
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-12 flex items-center justify-center gap-1 sm:gap-3 md:gap-7 overflow-x-auto">
+          {navLinks.map((link) => {
+            const Icon = link.icon;
+            const isActive = isLinkActive(link);
+            const navColor = getNavColor(link.sectionId);
 
-            <button
-              onClick={() => setIsExpanded((prev) => !prev)}
-              type="button"
-              className="p-1 hover:bg-[#E54835]/15 hover:text-[#E54835] text-[#737373] dark:text-[#8E8E8A] transition-colors ml-auto cursor-pointer"
-              title={isExpanded ? 'Minimize Navigation' : 'Expand Navigation'}
-              aria-label={isExpanded ? 'Minimize navigation' : 'Expand navigation'}
-              aria-expanded={isExpanded}
-            >
-              {isExpanded ? (
-                <ChevronLeft className="w-4 h-4" />
-              ) : (
-                <ChevronRight className="w-4 h-4" />
-              )}
-            </button>
-          </div>
-
-          {/* Navigation Links: Icon first and second name */}
-          <div className="flex flex-col py-3 px-1.5 space-y-2">
-            {navLinks.map((link) => {
-              const Icon = link.icon;
-              const isActive = isLinkActive(link);
-              const navColor = getNavColor(link.sectionId);
-
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link)}
-                  className={`relative group px-2 py-2 flex items-center cursor-pointer transition-colors rounded-none ${
-                    isActive
-                      ? `bg-black/5 dark:bg-white/5 ${navColor.text} font-bold`
-                      : 'text-[#737373] dark:text-[#8E8E8A] hover:text-[#111111] dark:hover:text-[#FFFFFF] hover:bg-black/5 dark:hover:bg-white/5'
-                  }`}
-                  aria-label={link.label}
-                  aria-current={isActive ? 'page' : undefined}
-                >
-                  {/* Active Left Vertical Accent Line (| style) */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="desktopActiveVerticalLine"
-                      className={`absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 ${navColor.bg}`}
-                      style={{ boxShadow: `0 0 8px ${navColor.hex}` }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  )}
-
-                  {/* First: Icon */}
-                  <div className="w-6 flex items-center justify-center shrink-0">
-                    <Icon
-                      className={`w-4 h-4 transition-all duration-200 ${
-                        isActive
-                          ? `${navColor.text} scale-110`
-                          : 'group-hover:text-[#111111] dark:group-hover:text-[#FFFFFF]'
-                      }`}
-                      style={isActive ? { filter: `drop-shadow(0 0 6px ${navColor.hex}88)` } : undefined}
-                    />
-                  </div>
-
-                  {/* Second: Name (Shows when expanded) */}
-                  <AnimatePresence initial={false}>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0, width: 0 }}
-                        animate={{ opacity: 1, width: 'auto' }}
-                        exit={{ opacity: 0, width: 0 }}
-                        transition={{ duration: 0.18 }}
-                        className="flex items-center whitespace-nowrap overflow-hidden text-xs font-mono uppercase tracking-wide"
-                      >
-                        <span className="ml-2.5 flex items-center gap-1.5">
-                          <span className="text-[10px] text-neutral-400 font-normal">
-                            {link.num}.
-                          </span>
-                          <span className={isActive ? `${navColor.text} font-bold` : ''}>
-                            {link.label}
-                          </span>
-                        </span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Tooltip when in Minimized state */}
-                  {!isExpanded && (
-                    <div className="absolute left-full ml-3 px-2.5 py-1 bg-[#111111] dark:bg-white text-white dark:text-black text-[10px] font-mono uppercase tracking-wider font-bold whitespace-nowrap shadow-xl border border-[#262624] dark:border-[#D9D9D5] opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 translate-x-1 group-hover:translate-x-0 rounded-none z-50">
-                      {link.num} // {link.label}
-                    </div>
-                  )}
-                </a>
-              );
-            })}
-          </div>
-        </motion.div>
-      </nav>
-
-      {/* ========================================================================= */}
-      {/* 3. MOBILE VIEW: BOTTOM DOCKED NAVIGATION BAR                              */}
-      {/* First: Icon, Second: Name underneath with Experience 4th, Projects 5th    */}
-      {/* ========================================================================= */}
-      <nav
-        aria-label="Mobile bottom navigation"
-        className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white/95 dark:bg-[#0D0D0D]/95 backdrop-blur-xl border-t border-[#E2E2DE] dark:border-[#262624] px-1 py-1.5 grid grid-cols-6 items-center shadow-[0_-8px_24px_rgba(0,0,0,0.12)] safe-area-bottom"
-      >
-        {navLinks.map((link) => {
-          const Icon = link.icon;
-          const isActive = isLinkActive(link);
-          const navColor = getNavColor(link.sectionId);
-
-          return (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link)}
-              className="relative px-1 py-1.5 flex flex-col items-center justify-center cursor-pointer select-none min-w-0"
-              aria-label={link.label}
-              aria-current={isActive ? 'page' : undefined}
-            >
-              {/* First: Icon */}
-              <Icon
-                className={`w-4 h-4 mb-0.5 transition-all duration-200 ${
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link)}
+                className={`relative shrink-0 px-2 sm:px-3 py-3 flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-[11px] font-mono uppercase tracking-wide transition-colors ${
                   isActive
-                    ? navColor.text
-                    : 'text-[#737373] dark:text-[#8E8E8A]'
+                    ? `${navColor.text} font-bold`
+                    : 'text-[#737373] dark:text-[#8E8E8A] hover:text-[#111111] dark:hover:text-white'
                 }`}
-                style={isActive ? { filter: `drop-shadow(0 0 6px ${navColor.hex}66)` } : undefined}
-              />
-
-              {/* Second: Name */}
-              <span
-                className={`font-mono text-[9px] uppercase tracking-tight transition-colors truncate max-w-full ${
-                  isActive
-                    ? `font-bold ${navColor.text}`
-                    : 'text-[#737373] dark:text-[#8E8E8A]'
-                }`}
+                aria-label={link.label}
+                aria-current={isActive ? 'page' : undefined}
               >
-                {link.label}
-              </span>
-
-              {/* Active Horizontal Underline Accent */}
-              {isActive && (
-                <motion.div
-                  layoutId="mobileActiveUnderline"
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2px] ${navColor.bg}`}
-                  style={{ boxShadow: `0 0 8px ${navColor.hex}` }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                />
-              )}
-            </a>
-          );
-        })}
+                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                <span>{link.label}</span>
+                {isActive && (
+                  <motion.div
+                    layoutId="topNavActiveUnderline"
+                    className={`absolute bottom-0 left-2 right-2 h-[2px] ${navColor.bg}`}
+                    style={{ boxShadow: `0 0 8px ${navColor.hex}` }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </a>
+            );
+          })}
+        </div>
       </nav>
     </div>
   );
