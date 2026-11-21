@@ -380,9 +380,9 @@ export const ContactSection: React.FC = () => {
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
-                      className="p-4 bg-emerald-500/10 dark:bg-[#E54835]/10 border border-emerald-500/30 dark:border-[#E54835]/25 text-emerald-700 dark:text-[#E54835] text-xs font-mono flex items-center gap-3 rounded-none"
+                      className="p-4 bg-[#E54835]/10 dark:bg-[#E54835]/10 border border-[#E54835]/30 dark:border-[#E54835]/25 text-[#E54835] dark:text-[#E54835] text-xs font-mono flex items-center gap-3 rounded-none"
                     >
-                      <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-500 dark:text-[#E54835]" />
+                      <CheckCircle2 className="w-5 h-5 shrink-0 text-[#E54835] dark:text-[#E54835]" />
                       <div>
                         <div className="font-bold">Inquiry Transmitted Successfully</div>
                         <div>Thank you for reaching out. Gowtham will review your requirements and respond promptly.</div>
