@@ -294,7 +294,7 @@ export const SkillsSection: React.FC = () => {
                       ) : file.type === 'image' ? (
                         <Eye className="w-5 h-5 text-blue-500" />
                       ) : (
-                        <FileCode2 className="w-5 h-5 text-emerald-500" />
+                        <FileCode2 className="w-5 h-5 text-[#E54835]" />
                       )}
                     </div>
                     <div className="min-w-0">
